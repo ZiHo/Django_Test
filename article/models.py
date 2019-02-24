@@ -1,10 +1,15 @@
 from django.db import models
+from django.utils import timezone
+from django.contrib.auth.models import User
 
 
 # Create your models here.
-class Ariticle(models.Model):
+class Article(models.Model):
     title = models.CharField(max_length=30)
     content = models.TextField()
+    created_time = models.DateTimeField(auto_now_add=True)
+    last_updated_time = models.DateTimeField(auto_now=True)
+    auther = models.ForeignKey(User, on_delete=models.DO_NOTHING, default=1)
 
     def __str__(self):
-        return "<Ariticle: %s>" % self.title
+        return "<Article: %s>" % self.title
