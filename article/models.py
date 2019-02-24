@@ -9,7 +9,9 @@ class Article(models.Model):
     content = models.TextField()
     created_time = models.DateTimeField(auto_now_add=True)
     last_updated_time = models.DateTimeField(auto_now=True)
-    auther = models.ForeignKey(User, on_delete=models.DO_NOTHING, default=1)
+    author = models.ForeignKey(User, on_delete=models.DO_NOTHING, default=1)
+    is_deleted = models.BooleanField(default=False)
+    readed_num = models.IntegerField(default=0)
 
     def __str__(self):
         return "<Article: %s>" % self.title
